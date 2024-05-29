@@ -6,7 +6,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
 import ru.robq.blps1.exception.ArticleNotFoundException;
-import ru.robq.blps1.model.ArticlePreview;
+import ru.robq.blps1.dao.ArticleDAO;
 import ru.robq.blps1.model.Category;
 import ru.robq.blps1.model.Subject;
 import ru.robq.blps1.repository.ArticleRepository;
@@ -41,13 +41,13 @@ public class ArticleController {
     }
 
     @GetMapping("/articles/category/{categoryId}")
-    public List<ArticlePreview> articlesByCategory(@PathVariable Long categoryId){
-        return articleRepository.findByCategoryId(categoryId).stream().map(article -> new ArticlePreview(article)).toList();
+    public List<ArticleDAO> articlesByCategory(@PathVariable Long categoryId){
+        return articleRepository.findByCategoryId(categoryId).stream().map(ArticleDAO::new).toList();
     }
 
     @GetMapping("/articles/subject/{subjectId}")
-    public List<ArticlePreview> articlesBySubject(@PathVariable Long subjectId){
-        return articleRepository.findBySubjectId(subjectId).stream().map(article -> new ArticlePreview(article)).toList();
+    public List<ArticleDAO> articlesBySubject(@PathVariable Long subjectId){
+        return articleRepository.findBySubjectId(subjectId).stream().map(ArticleDAO::new).toList();
     }
 
     @GetMapping("/articles/random")
