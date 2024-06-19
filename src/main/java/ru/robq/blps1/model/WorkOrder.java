@@ -1,16 +1,17 @@
 package ru.robq.blps1.model;
 
-import java.time.LocalDate;
-import java.util.Date;
-
 import jakarta.persistence.*;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
+
+import java.time.LocalDate;
 
 @Getter
 @Setter
 @Entity
 @Table(name = "work_order")
+@NoArgsConstructor
 public class WorkOrder {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)

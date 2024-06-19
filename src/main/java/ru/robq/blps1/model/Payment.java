@@ -1,17 +1,20 @@
 package ru.robq.blps1.model;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.Table;
-import lombok.Builder;
-import lombok.Getter;
-import lombok.Setter;
+import jakarta.persistence.*;
+import lombok.*;
 
 @Getter
 @Setter
 @Builder
 @Entity
 @Table(name = "payment")
+@NoArgsConstructor
+@AllArgsConstructor
 public class Payment {
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column(name = "id", nullable = false)
+    private Long id;
     private String cardNumber;
     private String cardExpiration;
     private String cardName;
